@@ -144,7 +144,7 @@ void desEncryptionPer64_return(char* message,char* key,char* ciphertext){
  flipSplitBytes(roundOutput,subR[16],subL[16]); // swap R and L
  finalPermutation(roundOutput,finalOutput);// final permutation
  //printCharHex(finalOutput);
- fwrite(finalOutput,sizeof(char),8,stdout);
+ //fwrite(finalOutput,sizeof(char),8,stdout);
  memcpy(ciphertext,finalOutput,8);
 
 }
