@@ -1,5 +1,9 @@
 #ifndef BITPERMUTATIONFUNCTIONS_H
 #define BITPERMUTATIONFUNCTIONS_H
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 /*        INITIAL PERMUTATION  */
 void initialPermutation(char* message,char* ip);
@@ -26,5 +30,8 @@ void shiftPBoxOutput(char* message);
 /*      Final Permutation     */
 void finalPermutation(char* message,char* ip);
 void flipSplitBytes(char* output,char* R,char* L);
+#ifdef __cplusplus
+}
+#endif
 
 #endif
