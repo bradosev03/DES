@@ -8,10 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char* inputKey3,char* iv,int size);
+void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char* inputKey3,char* iv,int size ,char *out );
 
-void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char* inputKey3,char* iv,int size){
-
+void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char* inputKey3,char* iv,int size ,char *out ){
  char* newMessage = NULL;
  char(*messageBlocks)[8];
  int i,j,k;
@@ -30,6 +29,9 @@ void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char
     desEncryptionPer64_nullReturn(input,inputKey1,output);
     desDecryptionPer64_return(output,inputKey2,output2);
     desEncryptionPer64_return(output2,inputKey3,prev);
+
+    //COPY RESULT / jet
+     strncat(out,prev, sizeof(prev));
   }
 
   else if(rem != 0){
@@ -59,6 +61,9 @@ void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char
     desEncryptionPer64_nullReturn(temp,inputKey1,output);
     desDecryptionPer64_return(output,inputKey2,output2);
     desEncryptionPer64_return(output2,inputKey3,prev);
+
+     //COPY RESULT / jet
+     strncat(out,prev, sizeof(prev));
    }
 
     free(newMessage);
@@ -85,6 +90,9 @@ void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char
     desEncryptionPer64_nullReturn(temp,inputKey1,output);
     desDecryptionPer64_return(output,inputKey2,output2);
     desEncryptionPer64_return(output2,inputKey3,prev);
+
+     //COPY RESULT / jet
+     strncat(out,prev, sizeof(prev));
    }
 
 free(newMessage);

@@ -578,12 +578,15 @@ void splitCharByte(char* input,char* side1,char* side2) {
 
     int i,j,num1,num2;
 
+    char side1_1[8] ={0};
+    char side2_2[8] ={0};
+
     for(i = 0; i < 8; i++) {
   
      for(j = 0; j <8; j++) {
   
-     side1[i] ^= (-(0) ^ side1[i]) & (1<<j);
-     side2[i] ^= (-(0) ^ side2[i]) & (1<<j);
+     side1_1[i] ^= (-(0) ^ side1_1[i]) & (1<<j);
+     side2_2[i] ^= (-(0) ^ side2_2[i]) & (1<<j);
      }
  }
 
@@ -591,12 +594,14 @@ void splitCharByte(char* input,char* side1,char* side2) {
  	for( i = 7; i >= 0; i--) {
 
 	 	num1 = (input[j] >> i) & 0x01;
-                side1[j] ^= (-(num1) ^ side1[j]) & (1<<i);
+                side1_1[j] ^= (-(num1) ^ side1_1[j]) & (1<<i);
 
                 num2 = (input[j+4] >> i) & 0x01;
-                side2[j] ^= (-(num2) ^ side2[j+4]) & (1<<i);
+                side2_2[j] ^= (-(num2) ^ side2_2[j+4]) & (1<<i);
  	}
   }
+  memcpy(side1,side1_1, 4 );
+  memcpy(side2,side2_2,4);
 
 
 }
