@@ -22,6 +22,9 @@ void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char
  char output[8];
  char output2[8];
  char final[8];
+
+    int out_index=0;
+
  if(numBlocks == 1 && rem == 0) {
     for(k=0; k <8; k++){
       input[k] ^= iv[k];
@@ -31,7 +34,11 @@ void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char
     desEncryptionPer64_return(output2,inputKey3,prev);
 
     //COPY RESULT / jet
-     strncat(out,prev, sizeof(prev));
+//     strncat(out,prev, sizeof(prev));
+     for(k=0;k<8;k++){
+         out[out_index] = prev[k];
+         out_index++;
+     }
   }
 
   else if(rem != 0){
@@ -63,7 +70,11 @@ void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char
     desEncryptionPer64_return(output2,inputKey3,prev);
 
      //COPY RESULT / jet
-     strncat(out,prev, sizeof(prev));
+//     strncat(out,prev, sizeof(prev));
+     for(k=0;k<8;k++){
+         out[out_index] = prev[k];
+         out_index++;
+     }
    }
 
     free(newMessage);
@@ -92,7 +103,11 @@ void tripleKeyDES_CBCEncryption(char *input,char* inputKey1,char* inputKey2,char
     desEncryptionPer64_return(output2,inputKey3,prev);
 
      //COPY RESULT / jet
-     strncat(out,prev, sizeof(prev));
+//     strncat(out,prev, sizeof(prev));
+     for(k=0;k<8;k++){
+         out[out_index] = prev[k];
+         out_index++;
+     }
    }
 
 free(newMessage);
